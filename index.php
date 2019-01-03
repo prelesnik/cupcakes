@@ -18,7 +18,7 @@
 
         $isValid = true;
 
-        $flavors = "";
+        $flavors = array();
         $orders = array();
         $cupcakes = array("grasshopper"=>"The Grasshopper", "maple"=>"Whiskey Maple Bacon",
             "carrot"=>"Carrot Walnut", "caramel"=>"Salted Caramel Cupcake", "velvet"=>"Red Velvet",
@@ -50,9 +50,9 @@
                 {
                     if (in_array($_POST['orders'][$i], $validFlavors))
                     {
-                        $flavors .= $_POST['orders'][$i] . " ";
+                        array_push($flavors, $_POST['orders'][$i]);
+                        //$flavors .= $_POST['orders'][$i] . " ";
                     }
-
                 }
             }
 
@@ -66,7 +66,19 @@
         //if all the data is valid, display the requested information
         if($isValid)
         {
+            echo "Thank you, $namex, for your order!<br>";
 
+            echo "Order Summary:";
+            echo "<ul>";
+            foreach ($flavors as $option)
+            {
+                echo "<li>$option</li>";
+
+            }
+            echo "</ul>";
+
+            echo "Order Total: $" . count($_POST['orders']) * 3.50;
+            echo "<br>";
         }
     ?>
 
