@@ -5,6 +5,8 @@
     A homepage for a cupcake shop allowing customers to order cupcakes
 -->
 
+<!-- ***** MAKE FORM STICKY AND GET RID OF ORDER SUMMARY BEFORE ORDER IS PLACED ***** -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +20,7 @@
 
         $isValid = true;
 
+        $namex= "";
         $flavors = array();
         $orders = array();
         $cupcakes = array("grasshopper"=>"The Grasshopper", "maple"=>"Whiskey Maple Bacon",
@@ -61,24 +64,24 @@
                 print "<p>Please choose at least one flavor</p>";
                 $isValid = false;
             }
-        }
 
-        //if all the data is valid, display the requested information
-        if($isValid)
-        {
-            echo "Thank you, $namex, for your order!<br>";
-
-            echo "Order Summary:";
-            echo "<ul>";
-            foreach ($flavors as $option)
+            //if all the data is valid, display the requested information
+            if($isValid)
             {
-                echo "<li>$option</li>";
+                echo "Thank you, $namex, for your order!<br>";
 
+                echo "Order Summary:";
+                echo "<ul>";
+                foreach ($flavors as $option)
+                {
+                    echo "<li>$option</li>";
+
+                }
+                echo "</ul>";
+
+                echo "Order Total: $" . count($_POST['orders']) * 3.50;
+                echo "<br>";
             }
-            echo "</ul>";
-
-            echo "Order Total: $" . count($_POST['orders']) * 3.50;
-            echo "<br>";
         }
     ?>
 
@@ -86,7 +89,7 @@
 
         <label>Name:&nbsp;<br>
             <input type="text" size="30" maxlength="30"
-                   name="namex" id="namex">
+                   name="namex" id="namex" value="<?php echo $namex ?>">
         </label><br>
 
         <br>
