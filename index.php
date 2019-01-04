@@ -5,8 +5,6 @@
     A homepage for a cupcake shop allowing customers to order cupcakes
 -->
 
-<!-- ***** MAKE FORM STICKY AND GET RID OF ORDER SUMMARY BEFORE ORDER IS PLACED ***** -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +52,6 @@
                     if (in_array($_POST['orders'][$i], $validFlavors))
                     {
                         array_push($flavors, $_POST['orders'][$i]);
-                        //$flavors .= $_POST['orders'][$i] . " ";
                     }
                 }
             }
@@ -99,7 +96,7 @@
             foreach ($cupcakes as $option => $text)
             {
                 echo "<label><input type='checkbox' ";
-                if(in_array($option, $orders))
+                if(in_array($option, $flavors))
                     echo "checked='checked'";
                 echo "value='$option' name='orders[]'>$text</label><br>";
 
